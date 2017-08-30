@@ -52,6 +52,7 @@ import android.view.SurfaceHolder;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CameraController2 extends CameraController {
 	private static final String TAG = "CameraController2";
+	private static final long MAX_EXPOSURE_TIME = 5_000_000_000L; //5 seconds
 
 	private final Context context;
 	private CameraDevice camera;
@@ -1363,7 +1364,7 @@ public class CameraController2 extends CameraController {
 				camera_features.supports_expo_bracketing = true;
 				camera_features.max_expo_bracketing_n_images = max_expo_bracketing_n_images;
 				camera_features.min_exposure_time = exposure_time_range.getLower();
-				camera_features.max_exposure_time = exposure_time_range.getUpper();
+				camera_features.max_exposure_time = MAX_EXPOSURE_TIME;
 			}
 		}
 
@@ -3689,7 +3690,7 @@ public class CameraController2 extends CameraController {
 							Log.d(TAG, "exposure_time_scale: " + exposure_time_scale);
 						}
 						long min_exposure_time = exposure_time_range.getLower();
-						long max_exposure_time = exposure_time_range.getUpper();
+						long max_exposure_time = MAX_EXPOSURE_TIME;
 						exposure_time *= exposure_time_scale;
 						if( exposure_time < min_exposure_time )
 							exposure_time = min_exposure_time;
@@ -3844,7 +3845,7 @@ public class CameraController2 extends CameraController {
 			Range<Long> exposure_time_range = characteristics.get(CameraCharacteristics.SENSOR_INFO_EXPOSURE_TIME_RANGE); // may be null on some devices
 			if( exposure_time_range != null ) {
 				min_exposure_time = exposure_time_range.getLower();
-				max_exposure_time = exposure_time_range.getUpper();
+				max_exposure_time = MAX_EXPOSURE_TIME;
 			}
 
 			if( MyDebug.LOG ) {
