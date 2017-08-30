@@ -197,7 +197,7 @@ public class MyApplicationInterface implements ApplicationInterface {
 	public boolean useCamera2() {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         if( main_activity.supportsCamera2() ) {
-    		return sharedPreferences.getBoolean(PreferenceKeys.getUseCamera2PreferenceKey(), false);
+    		return sharedPreferences.getBoolean(PreferenceKeys.getUseCamera2PreferenceKey(), true);
         }
         return false;
     }
